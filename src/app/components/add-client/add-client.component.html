@@ -1,0 +1,252 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"> Back to Dashboard</i>
+    </a>
+  </div>
+  <div class="col-md-6">
+
+    </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Add Client
+  </div>
+  <div class="card-body">
+    <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="firstName"
+                    #clientFirstName="ngModel"
+                    [ngClass]="{'is-invalid' : clientFirstName.errors && clientFirstName.touched}"
+                    [(ngModel)]="client.firstName"
+                    minlength="2"
+                    required
+                    >
+                    <div [hidden]="!clientFirstName.errors?.required" class="invalid-feedback">
+                      First name required
+                    </div>
+
+                    <div [hidden]="!clientFirstName.errors?.minlength" class="invalid-feedback">
+                        Must be atleast 2 characters
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="lastName"
+                    #clientLastName="ngModel"
+                    [ngClass]="{'is-invalid' : clientLastName.errors && clientLastName.touched}"
+                    [(ngModel)]="client.lastName"
+                    minlength="2"
+                    required
+                    >
+                    <div [hidden]="!clientLastName.errors?.required" class="invalid-feedback">
+                      Last name required
+                    </div>
+
+                    <div [hidden]="!clientLastName.errors?.minlength" class="invalid-feedback">
+                        Must be atleast 2 characters
+                      </div>
+                  </div>
+            </div>
+          </div>
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    #clientEmail="ngModel"
+                    [ngClass]="{'is-invalid' : clientEmail.errors && clientEmail.touched}"
+                    [(ngModel)]="client.email"
+                    pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                    required
+                    >
+                    <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
+                      Email required
+                    </div>
+
+                    <div [hidden]="!clientEmail.errors?.pattern" class="invalid-feedback">
+                        Email is not valid
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="phone"
+                    #clientPhone="ngModel"
+                    [ngClass]="{'is-invalid' : clientPhone.errors && clientPhone.touched}"
+                    [(ngModel)]="client.phone"
+                    minlength="10"
+                    required
+                    >
+                    <div [hidden]="!clientPhone.errors?.required" class="invalid-feedback">
+                      Phone is required
+                    </div>
+
+                    <div [hidden]="!clientPhone.errors?.minlength" class="invalid-feedback">
+                        Must be atleast 10 characters
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="date">Date </label>
+                    <input
+                    type="date"
+                    class="form-control"
+                    name="date"
+                    #clientDate="ngModel"
+                    [ngClass]="{'is-invalid' : clientDate.errors && clientDate}"
+                    [(ngModel)]="client.date"
+                    minlength="4"
+                    required
+                    >
+                    <div [hidden]="!clientDate.errors?.required" class="invalid-feedback">
+                      Date is required
+                    </div>
+                  </div>
+              </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nationalId">National ID</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="nationalId"
+                    #clientnationalId="ngModel"
+                    [ngClass]="{'is-invalid' : clientnationalId.errors && clientnationalId.touched}"
+                    [(ngModel)]="client.nationalId"
+                    minlength="6"
+                    required
+                    >
+                    <div [hidden]="!clientnationalId.errors?.required" class="invalid-feedback">
+                      ID no. is required
+                    </div>
+
+                    <div [hidden]="!clientnationalId.errors?.minlength" class="invalid-feedback">
+                      No. is incomplete
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vehicleRegistration">Vehicle</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+                <div class="form-group">
+                    <label for="vehicleRegistration">Vehicle</label>
+                    <select
+                    name="vehicleRegistration"
+                    id="vehicleRegistration"
+                    #vehicleRegistration="ngModel"
+                    [(ngModel)]="vehicle.registration"
+                    [ngClass]="{'is-invalid' : vehicleRegistration.errors && vehicleRegistration.touched}"
+                    class="form-control"
+                    required
+                    >
+                      <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+                        {{ vehicle.registration }}
+                      </option>
+                    </select>
+                    <div [hidden]="!vehicleRegistration?.errors?.required" class="invalid-feedback">
+                        Vehicle registration required
+                    </div>
+                </div>
+                  </div> -->
+
+            </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fuelLevel">Fuel Level </label>
+                    <input
+                    type="text"
+                    placeholder="one eighth"
+                    class="form-control"
+                    name="fuelLevel"
+                    #clientFuelLevel="ngModel"
+                    [ngClass]="{'is-invalid' : clientFuelLevel.errors && clientFuelLevel.touched}"
+                    [(ngModel)]="client.fuelLevel"
+                    minlength="4"
+                    required
+                    >
+                    <div [hidden]="!clientFuelLevel.errors?.required" class="invalid-feedback">
+                      Fuel Level required
+                    </div>
+
+                    <div [hidden]="!clientFuelLevel?.minlength" class="invalid-feedback">
+                      Insufficient characters entered
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fuelBalance">Fuel Balance</label>
+                    <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="client.fuelBalance"
+                    name="fuelBalance"
+                    #clientFuelBalance = "ngModel"
+                    [disabled]="disableFuelBalanceOnAdd"
+                    >
+                  </div>
+            </div>
+          </div>
+
+        <input type="submit" value="submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="col-md-6">
+    <div class="form-group">
+        <label for="vehicleRegistration">Vehicle</label>
+        <select
+        name="vehicleRegistration"
+        id="vehicleRegistration"
+        #vehicleRegistration="ngModel"
+        [(ngModel)]="vehicle.registration"
+        [ngClass]="{'is-invalid' : vehicleRegistration.errors && vehicleRegistration.touched}"
+        class="form-control"
+        required
+        >
+          <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+            {{ vehicle.registration }}
+          </option>
+        </select>
+        <div [hidden]="!vehicleRegistration?.errors?.required" class="invalid-feedback">
+            Vehicle registration required
+        </div>
+    </div>
+      </div> -->

@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> back to dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+      <a routerLink="/client/edit/{{id}}" class="btn btn-dark">Edit</a> 
+      <button (click)="onDeleteClick()" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="client" class="card">
+  <h3 class="card-header" 
+  [class.text-danger]="hasFuelBalance" 
+  [class.text-success]="!hasFuelBalance" 
+  > 
+  {{client.firstName}} {{client.lastName}} 
+</h3>
+  <div class="card-body">
+    <div class="row">
+      <div class="cold-md-8 col-md-6">
+        <h6> Form ID: {{client.id}} </h6>
+      </div>
+      <div class="cold-md-8 col-md-6">
+        <h4 class="pull-right">
+        Fuel Balance
+        <span 
+        [class.text-danger]="hasFuelBalance"
+        [class.text-success]="!hasFuelBalance" 
+        >
+        {{ client.fuelBalance | currency:"KES ":"symbol" }}
+      </span>
+      <small>
+        <a (click)="showFuelBalanceUpdateInput = !showFuelBalanceUpdateInput">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </small>
+    </h4>
+    <div class="clearfix">
+      <form *ngIf="showFuelBalanceUpdateInput" (submit)="updateFuelBalance()">
+        <div class="input-group">
+          <input 
+          type="number" 
+          name="fuelBalance" 
+          class="form-control" 
+          placeholder="type 0 if no balance"
+          [(ngModel)]="client.fuelBalance"
+          #clientFuelBalance = "ngModel"
+          >
+          <span class="input-group-btn">
+            <button type="submit" class="btn ptn-primary">Update</button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+        </div>
+    </div>
+    <hr>
+    <ul class="list-group">
+      <li class="list-group-item"> National ID: {{ client.nationalId }} </li>
+      <li class="list-group-item"> Email: {{ client.email }} </li>
+      <li class="list-group-item"> Phone: {{ client.phone }} </li>
+      <li class="list-group-item"> Date: {{ client.date | date: 'short'}} </li>
+      <li class="list-group-item"> Fuel Level: {{ client.fuelLevel }} </li>
+    </ul>
+  </div>
+</div>
